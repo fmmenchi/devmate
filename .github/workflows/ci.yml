@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+  # @fmmenchi/* installs from GitHub Packages, which asks for a token even for
+  # public packages.
+  packages: read
+
+env:
+  HUSKY: 0
+
+jobs:
+  # The same gate as local and pre-push (ADR 0002): CI is only the place where
+  # it cannot be skipped. Bricks pinned by commit SHA, never a movable tag.
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # gh-actions/v0.4.4
+      - uses: fmmenchi/shared-platform/packages/ops/gh-actions/actions/setup@39cc0af814c94f6502d5cf4c12a8ccab0e5b4aba
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: pnpm run check
