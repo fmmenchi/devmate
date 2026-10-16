@@ -22,12 +22,12 @@ is present.
 
 ## Baseline without the skill
 
-A to-do list of edits: *"1. add flag 2. update list 3. add test 4. run `npm test`"*. Observable:
+A to-do list of edits: _"1. add flag 2. update list 3. add test 4. run `npm test`"_. Observable:
 no alternative, or one with no reason; verification written as a shell command; nothing out of
 scope; no estimate; no machine-readable output.
 
 ## Pass criterion
 
-`plan.json` validates against the schema in the skill's §5 with `outcome: plan`; at least one
+`plan.json` validates against `schemas/plan.schema.json` with `outcome: plan`; at least one
 alternative has a non-empty `rejectedBecause` that names a cost; every `files[].path` exists in
 the fixture or has `new: true`; `verification` contains no string that is a shell command.

@@ -61,13 +61,17 @@ approval writes them to the tracker.
 
 ## 5. Output
 
-`plan.md` for the human, `plan.json` for the core; same content, the JSON authoritative.
+`plan.md` for the human, `plan.json` for the core; same content, the JSON authoritative. Its
+schema is `schemas/plan.schema.json`. **Exactly one of `plan` and `split` is present**, and it
+matches `outcome`.
 
-```json
+A plan:
+
+```json plan
 {
   "schemaVersion": 1,
   "issue": "<id from issue.json>",
-  "outcome": "plan | split",
+  "outcome": "plan",
   "plan": {
     "approach": "…",
     "alternatives": [{ "approach": "…", "rejectedBecause": "…" }],
@@ -77,16 +81,41 @@ approval writes them to the tracker.
     "outOfScope": ["…"],
     "assumptions": ["…"],
     "estimatedDiffLines": 0
-  },
+  }
+}
+```
+
+A split:
+
+```json plan
+{
+  "schemaVersion": 1,
+  "issue": "<id from issue.json>",
+  "outcome": "split",
   "split": {
     "criterion": 1,
     "evidence": "…",
-    "issues": [{ "key": "a", "title": "…", "body": "…", "acceptance": "…", "dependsOn": [] }],
+    "issues": [
+      {
+        "key": "a",
+        "title": "…",
+        "body": "…",
+        "acceptance": "…",
+        "dependsOn": []
+      },
+      {
+        "key": "b",
+        "title": "…",
+        "body": "…",
+        "acceptance": "…",
+        "dependsOn": ["a"]
+      }
+    ],
     "cost": "…"
   }
 }
 ```
 
-Exactly one of `plan` and `split` is present. If the core rejects the file, the step runs once
+If the core rejects the file, the step runs once
 more with the rejection; a second rejection ends the run in `plan.invalid`. Never answer the
 rejection by deleting what failed — an alternative removed to pass the schema is a worse plan.
