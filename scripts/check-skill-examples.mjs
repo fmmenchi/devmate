@@ -13,6 +13,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const skillsDir = join(root, 'skills');
 const ajv = new Ajv2020({ allErrors: true, strict: true });
+const compiled = new Map();
 const fence = /^```json([^\n]*)\n([\s\S]*?)^```/gm;
 let errors = 0;
 
@@ -57,7 +58,24 @@ for (const { name } of skills) {
       fail(where, `the ${artefact} example is not valid JSON: ${e.message}`);
       continue;
     }
-    const validate = ajv.compile(JSON.parse(readFileSync(schemaFile, 'utf8')));
+    if (!compiled.has(schemaFile)) {
+      try {
+        compiled.set(
+          schemaFile,
+          ajv.compile(JSON.parse(readFileSync(schemaFile, 'utf8'))),
+        );
+      } catch (e) {
+        compiled.set(schemaFile, e);
+      }
+    }
+    const validate = compiled.get(schemaFile);
+    if (validate instanceof Error) {
+      fail(
+        where,
+        `schemas/${artefact}.schema.json does not compile: ${validate.message}`,
+      );
+      continue;
+    }
     if (!validate(example)) {
       for (const err of validate.errors) {
         fail(
