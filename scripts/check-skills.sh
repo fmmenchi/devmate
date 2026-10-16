@@ -39,10 +39,11 @@ if [ ! -f "$gate" ]; then
 fi
 
 # A gate that ignores its argument would check ai-skills' own skills and pass
-# on ours unseen. Probe it on an empty root first: it must say so.
+# on ours unseen. Probe it on a root whose skills/ is empty: it must say so.
 probe="$(mktemp -d)"
+mkdir "$probe/skills"
 probe_out="$(bash "$gate" "$probe" 2>&1 || true)"
-rmdir "$probe"
+rm -rf "$probe"
 grep -q 'skills/ is empty' <<<"$probe_out" \
   || die "ai-skills@$sha does not check the root it is given — move .ai-skills-ref to a commit whose gate takes one"
 
