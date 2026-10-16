@@ -4,6 +4,9 @@
   reviews — adversarial, and a UI architect's; revision 2 through a prior-art survey of Max's
   repositories and the analogous systems. All three are kept verbatim under `reviews/`, and what
   each changed is recorded at the end.
+- **Read it as (2026-10-16):** revision 3, still for review. Where an
+  [ADR](../adr/index.md) decides, the ADR prevails over this text; the eight questions at the end
+  remain open.
 - **Owner:** Fabio Menchicchi
 - **Lives here**, in the product's repository. The harness — `ai-skills` — knows nothing of the
   programme by design; its own decisions stay there, and this plan only asks one of it (D1).
