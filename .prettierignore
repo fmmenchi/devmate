@@ -6,3 +6,6 @@
 .nx/self-healing
 /apps/docusaurus/build
 /apps/docusaurus/.docusaurus
+
+# Review records are kept verbatim; formatting them would rewrite the record.
+apps/docusaurus/docs/plan/reviews
