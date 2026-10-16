@@ -1,0 +1,18 @@
+# Semantic branch names, checked on the refs actually being pushed. git hands
+# them to this hook on stdin, one per line: "<local ref> <local sha> <remote
+# ref> <remote sha>". Reading HEAD instead would let
+# `git push origin HEAD:refs/heads/anything` through, because HEAD was fine
+# and the remote name was never looked at.
+#
+# The vocabulary lives in tools/commit/types.mjs, shared with commitlint.
+null_sha=0000000000000000000000000000000000000000
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # A deletion pushes the null sha: nothing to name-check.
+  [ "$local_sha" = "$null_sha" ] && continue
+  case "$remote_ref" in
+    refs/heads/*) node tools/commit/check-branch-name.mjs "${remote_ref#refs/heads/}" || exit 1 ;;
+  esac
+done
+
+# The repository's own gate. Nothing leaves the machine without it.
+pnpm run check

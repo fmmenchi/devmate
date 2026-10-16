@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'packages/*/*'
+  - 'apps/*'
+
+# Dependencies allowed to run install scripts; anything not listed is refused.
+allowBuilds:
+  nx: true
+  '@swc/core': true
+  core-js: false
