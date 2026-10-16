@@ -19,10 +19,18 @@ jot/
 ```ts
 // src/cli.ts (excerpt)
 switch (cmd) {
-  case "add":  store.save([...store.load(), newNote(args.join(" "))]); break;
-  case "list": for (const n of store.load()) console.log(formatNote(n)); break;
-  case "rm":   store.save(store.load().filter((n) => n.id !== args[0])); break;
-  default:     usage(); process.exit(2);
+  case 'add':
+    store.save([...store.load(), newNote(args.join(' '))]);
+    break;
+  case 'list':
+    for (const n of store.load()) console.log(formatNote(n));
+    break;
+  case 'rm':
+    store.save(store.load().filter((n) => n.id !== args[0]));
+    break;
+  default:
+    usage();
+    process.exit(2);
 }
 ```
 

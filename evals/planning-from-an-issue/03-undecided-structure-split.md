@@ -13,7 +13,7 @@ triage from `fixtures/issues.md`.
 
 `outcome: split`, `criterion: 2`. The evidence names the decision the issue leaves open: where
 notes are synced through — a shared folder, a remote service, a new dependency such as a CRDT
-library — and how concurrent edits merge, since *"should not lose anything"* rules out
+library — and how concurrent edits merge, since _"should not lose anything"_ rules out
 last-write-wins on the whole file. The first issue is that decision, with alternatives as its
 acceptance criterion's subject, and depends on nothing. Every later issue — a per-note
 `updatedAt` in `src/types.ts`, the merge in `src/store.ts`, the transport — lists the first in
