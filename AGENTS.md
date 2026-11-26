@@ -15,7 +15,7 @@ TypeScript CLI that is the only writer to GitHub; the judgement steps are pipeli
 devmate depends on `ai-skills` (the skill gate) and `shared-platform` (the docs plugin, the CI
 bricks), both pinned. Neither depends on devmate.
 
-- **Monorepo:** Nx 23 — pnpm workspaces + TypeScript project references. Every project is created
+- **Monorepo:** Nx 24 — pnpm workspaces + TypeScript project references. Every project is created
   by its official generator, never by hand.
 - **Tooling:** TypeScript 6 · pnpm 11 · Node 26 · Prettier.
 
