@@ -17,7 +17,7 @@ bricks), both pinned. Neither depends on devmate.
 
 - **Monorepo:** Nx 23 — pnpm workspaces + TypeScript project references. Every project is created
   by its official generator, never by hand.
-- **Tooling:** TypeScript 6 · pnpm 11 · Node ≥ 24 · Prettier.
+- **Tooling:** TypeScript 6 · pnpm 11 · Node 26 · Prettier.
 
 ## Setup & commands
 
