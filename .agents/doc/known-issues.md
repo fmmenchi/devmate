@@ -8,7 +8,7 @@ Read this **before** debugging something odd. Each entry: the symptom, the cause
 `ERR_PNPM_WORKSPACE_PKG_NOT_FOUND … "@fmmenchi/nx-docusaurus@workspace:*"`.
 **Cause:** the generator assumes it runs inside `shared-platform`, where the plugin is a
 workspace package. In a consumer it is a registry package.
-**Do:** pin the published version in `apps/docusaurus/package.json` (done: `0.0.20`). The fix
+**Do:** pin the published version in `apps/docusaurus/package.json` (done: `0.0.21`). The fix
 belongs in `shared-platform`'s generator, not here.
 
 ## Nx's AI setup brings back what ADR 0001 and 0002 removed
