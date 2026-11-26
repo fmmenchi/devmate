@@ -88,6 +88,6 @@
     "@docusaurus/types": "^3.10.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@fmmenchi/nx-docusaurus": "0.0.20"
+    "@fmmenchi/nx-docusaurus": "0.0.21"
   }
 }
